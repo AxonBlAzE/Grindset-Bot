@@ -1,6 +1,7 @@
 import discord
 import os
 from music import Music 
+from grind import Grind
 
 my_secret = os.environ['myToken']
 client = discord.Client()
@@ -25,7 +26,8 @@ async def on_message(message):
     if message.content.startswith('!grindset'):
         voice = discord.VoiceClient(client, message.author)
         await message.channel.send('Sigma rule #0: turn that mindset into grindset')
-        music.play()
+        grind.play(message)
+        # music.play()
         # await message.channel.send(file=discord.File('Grindset.mp3'))
 
 client.run(my_secret)
