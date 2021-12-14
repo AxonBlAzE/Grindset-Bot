@@ -2,7 +2,6 @@ import discord
 import os
 from music import Music 
 from grind import Grind
-import asyncio
 
 my_secret = os.environ['myToken']
 client = discord.Client()
