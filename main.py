@@ -1,10 +1,11 @@
 import discord
 import os
-import music
+from music import Music 
 
 my_secret = os.environ['myToken']
 client = discord.Client()
-voice = discord.VoiceClient()
+voice = None
+music = Music(client)
 
 @client.event
 async def on_ready():
@@ -22,6 +23,7 @@ async def on_message(message):
         await message.channel.send('Shreyans Mulkutkar and Pratik Thakare')
     
     if message.content.startswith('!grindset'):
+        voice = discord.VoiceClient(client, message.author)
         await message.channel.send('Sigma rule #0: turn that mindset into grindset')
         music.play()
         # await message.channel.send(file=discord.File('Grindset.mp3'))
