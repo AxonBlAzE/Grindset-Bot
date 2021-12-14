@@ -35,11 +35,11 @@ async def on_message(message):
             await message.channel.send('```Sigma Rule #0: Turn that Mindset into Grindset```')
 
             vc = await voice_channel.connect()
-            vc.play(discord.FFmpegPCMAudio('Grindset.mp3'), after=lambda e: print('done', e))
+            vc.play(discord.FFmpegPCMAudio('Grindset.mp3'), after=lambda e: print('', e))
         
         # only play music if user is and the bot is already in a voice channel
         elif voice_channel == user.voice.channel:
-          vc.play(discord.FFmpegPCMAudio('Grindset.mp3'), after=lambda e: print('done', e))
+          vc.play(discord.FFmpegPCMAudio('Grindset.mp3'), after=lambda e: print('', e))
           
         else:
             await message.channel.send('User is not in a channel.')
