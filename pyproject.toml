@@ -9,6 +9,8 @@ python = "^3.8"
 discord = "^1.7.3"
 youtube_dl = "^2021.6.6"
 replit = "^3.2.4"
+Flask = "^2.0.2"
+grind = "^0.2.0"
 
 [tool.poetry.dev-dependencies]
 
