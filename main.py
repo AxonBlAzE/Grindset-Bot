@@ -12,7 +12,11 @@ mygrind = Grind(client)
 
 
 async def get_rule(n):
-    rule = db[n]
+    # rule = db[n]
+    if n not in db.keys():
+      rule = "```There is no such rule```"
+    else:
+      rule = "```Sigma Rule #" + str(n) + ": " + db[n] + "```"
     return rule
 
 
@@ -53,11 +57,14 @@ async def on_message(message):
             await message.channel.send('User is not in a channel.')
     
     if message.content.startswith('!rules'):
-      # await message.channel.send("Sigma Rule #" + str('rule#0') + ": " + db['rule#0'])
-      for keys in db.keys():
-        await message.channel.send("Sigma Rule #" + str(keys) + ": " + db[keys])
+      s = db.keys()
+      l = list(s)
+      l.sort()
+      for keys in l:
+        # print(l)
+        await message.channel.send("```Sigma Rule #" + str(keys) + ": " + db[keys] + "```")
 
-    if message.content.startswith('!rule#{i}'):
+    if message.content.startswith('!rule#'):
         n = message.content.split('#')[1]
         rule = await get_rule(n)
         await message.channel.send(rule)
