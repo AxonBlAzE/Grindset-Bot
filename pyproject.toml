@@ -8,6 +8,7 @@ authors = ["DanteEzz <<>>"]
 python = "^3.8"
 discord = "^1.7.3"
 youtube_dl = "^2021.6.6"
+replit = "^3.2.4"
 
 [tool.poetry.dev-dependencies]
 
