@@ -2,6 +2,7 @@ import discord
 import os
 from music import Music 
 from grind import Grind
+from replit import db
 
 my_secret = os.environ['myToken']
 client = discord.Client()
@@ -32,6 +33,7 @@ async def on_message(message):
         # only play music if user is in a voice channel and bot is not in the voice channel
         if voice_channel != None:
             # grab user's voice channel
+
             await message.channel.send('```Sigma Rule #0: Turn that Mindset into Grindset```')
 
             vc = await voice_channel.connect()
@@ -45,8 +47,9 @@ async def on_message(message):
             await message.channel.send('User is not in a channel.')
     
     if message.content.startswith('!rules'):
-        n = len(db)
-        for i in range(n):
-            await message.channel.send("Sigma Rule #" + str(i) + ": " + db[i])
+      # await message.channel.send("Sigma Rule #" + str('rule#0') + ": " + db['rule#0'])
+      for keys in db.keys():
+        await message.channel.send("Sigma Rule #" + str(keys) + ": " + db[keys])
 
+    
 client.run(my_secret)
