@@ -43,5 +43,10 @@ async def on_message(message):
           
         else:
             await message.channel.send('User is not in a channel.')
+    
+    if message.content.startswith('!rules'):
+        n = len(db)
+        for i in range(n):
+            await message.channel.send("Sigma Rule #" + str(i) + ": " + db[i])
 
 client.run(my_secret)
