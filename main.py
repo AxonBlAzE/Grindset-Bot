@@ -10,6 +10,12 @@ voice = None
 music = Music(client)
 mygrind = Grind(client)
 
+
+async def get_rule(n):
+    rule = db[n]
+    return rule
+
+
 @client.event
 async def on_ready():
   print('We have logged in as {0.user}'.format(client))
@@ -50,6 +56,12 @@ async def on_message(message):
       # await message.channel.send("Sigma Rule #" + str('rule#0') + ": " + db['rule#0'])
       for keys in db.keys():
         await message.channel.send("Sigma Rule #" + str(keys) + ": " + db[keys])
+
+    if message.content.startswith('!rule#{i}'):
+        n = message.content.split('#')[1]
+        rule = await get_rule(n)
+        await message.channel.send(rule)
+
 
     
 client.run(my_secret)
