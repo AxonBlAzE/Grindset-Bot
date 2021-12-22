@@ -20,6 +20,11 @@ async def get_rule(n):
         rule = "```Sigma Rule #" + str(n) + ": " + db[n] + "```"
     return rule
 
+async def generateMeme(ctx, meme_name, top_text, bottom_text):
+    meme_generator = MemeGenerator()
+    meme_generator.generate_meme(meme_name, top_text, bottom_text)
+    await ctx.send(file=discord.File(meme_generator.memes_folder_path + 'meme_edited.jpg'))
+
 async def disconnect(message):
     voice = message.guild.voice_client
     if voice:
@@ -82,11 +87,10 @@ async def on_message(message):
     if message.content in ('!disconnect', '-dc'):
         await disconnect(message)
         
-    if message.content.startswith('!meme'):
-      async def generateMeme(ctx, meme_name, top_text="", bottom_text=""):
-        meme_generator = MemeGenerator()
-        meme_generator.generate_meme(meme_name, top_text, bottom_text)
-        await ctx.send(file=discord.File(meme_generator.memes_folder_path + 'meme_edited.jpg'))
-
+    if message.content.startswith('!meme:'):
+      meme_name = 'chad'
+      top_text = 'Sigma Rule #' + str(random.randint(1, 100000))
+      bottom_text = message.content.split(':')[1]
+      await generateMeme(message, meme_name, top_text, bottom_text)
   
 bot.run(my_secret)
