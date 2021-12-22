@@ -1,5 +1,6 @@
 import discord
 import os
+import random
 from replit import db
 from keep_alive import keep_alive
 from meme_generator import MemeGenerator
@@ -20,10 +21,10 @@ async def get_rule(n):
         rule = "```Sigma Rule #" + str(n) + ": " + db[n] + "```"
     return rule
 
-async def generateMeme(ctx, meme_name, top_text, bottom_text):
+async def generateMeme(ctx, meme_name, top_text, bottom_text=" "):
     meme_generator = MemeGenerator()
     meme_generator.generate_meme(meme_name, top_text, bottom_text)
-    await ctx.send(file=discord.File(meme_generator.memes_folder_path + 'meme_edited.jpg'))
+    await ctx.channel.send(file=discord.File(meme_generator.memes_folder_path + 'meme_edited.jpg'))
 
 async def disconnect(message):
     voice = message.guild.voice_client
