@@ -2,6 +2,7 @@ import discord
 import os
 from replit import db
 from keep_alive import keep_alive
+from meme_generator import MemeGenerator
 
 
 keep_alive()
@@ -81,4 +82,11 @@ async def on_message(message):
     if message.content in ('!disconnect', '-dc'):
         await disconnect(message)
         
+    if message.content.startswith('!meme'):
+      async def generateMeme(ctx, meme_name, top_text="", bottom_text=""):
+        meme_generator = MemeGenerator()
+        meme_generator.generate_meme(meme_name, top_text, bottom_text)
+        await ctx.send(file=discord.File(meme_generator.memes_folder_path + 'meme_edited.jpg'))
+
+  
 bot.run(my_secret)
