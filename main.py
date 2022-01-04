@@ -110,8 +110,9 @@ async def on_message(message):
         await disconnect(message)
         
     if message.content.startswith('!meme:'):
-      meme_name = 'chad'
-      top_text = 'Sigma Rule #' + str(random.randint(1, 100000))
+      n = random.randint(1,4)
+      meme_name = 'chad'+str(n)
+      top_text = 'Sigma Rule #' + str(random.randint(1, 1000))
       bottom_text = message.content.split(':')[1]
       await generateMeme(message, meme_name, top_text, bottom_text)
   
